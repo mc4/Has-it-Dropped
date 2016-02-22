@@ -23,11 +23,6 @@ def has_it_dropped():
 			cache.append(submission.id)
 			text_me()
 
-sid = ''
-token = ''
-me = ''
-my_twilio_num = ''
-
 def text_me():
 	account_sid = sid
 	auth_token = token
@@ -35,12 +30,10 @@ def text_me():
 	message = client.messages.create(to=me, from_=my_twilio_num, body='Kendrick AND Cole mentioned!!!!')
 
 with open('credentials.txt','r') as credentials:
-	lines = credentials.read().splitlines()
 	sid = lines[0].split('=')[1]
 	token = lines[1].split('=')[1]
 	me = lines[2].split('=')[1]
 	my_twilio_num = lines[3].split('=')[1]
-
 
 while True:
 	has_it_dropped()
