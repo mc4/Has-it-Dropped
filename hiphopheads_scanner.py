@@ -1,14 +1,14 @@
 import praw
 from twilio.rest import TwilioRestClient
 
-user_agent = ('testing reddit api')
+user_agent = ('app to check for recent music submissions. /u/deeprecursion')
 r = praw.Reddit(user_agent = user_agent)
 
+cole_words = ['J. Cole', 'J Cole', 'Cole', 'Dreamville']
+kendrick_words = ['Kendrick Lamar', 'Kendrick']
 cache = []
 
 def has_it_dropped():
-	cole_words = ['J. Cole', 'J Cole', 'Cole', 'Dreamville']
-	kendrick_words = ['Kendrick Lamar', 'Kendrick']
 
 	subreddit = r.get_subreddit("hiphopheads")
 	submissions = subreddit.get_new(limit = 10)
@@ -30,6 +30,7 @@ def text_me():
 	message = client.messages.create(to=me, from_=my_twilio_num, body='Kendrick AND Cole mentioned!!!!')
 
 with open('credentials.txt','r') as credentials:
+	lines = credentials.readlines().splitlines()
 	sid = lines[0].split('=')[1]
 	token = lines[1].split('=')[1]
 	me = lines[2].split('=')[1]
