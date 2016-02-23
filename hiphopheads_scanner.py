@@ -1,3 +1,5 @@
+import time
+
 import praw
 from twilio.rest import TwilioRestClient
 
@@ -38,3 +40,4 @@ with open('credentials.txt','r') as credentials:
 
 while True:
 	has_it_dropped()
+	time.sleep(10)
